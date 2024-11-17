@@ -1,13 +1,15 @@
 package com.sns255.sns255;
 
-import org.junit.jupiter.api.Test;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.jupiter.api.Test;
 
 @SpringBootTest
-class Sns255ApplicationTests {
+@EnableAutoConfiguration(exclude = { DataSourceAutoConfiguration.class })
+public class Sns255ApplicationTests {
 
     @Test
     void contextLoads() {
     }
-
 }

@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  mysqldb:
+    image: mysql:latest
+    env_file:
+      - .env
+    ports:
+      - '3306:3306'
+    restart: always
+    volumes:
+      - 'mysqldb-data:/var/lib/mysql'
+    networks:
+      - app-tier
+
+  phpmyadmin:       # 나중에 없애도 댐
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 80:80
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_HOST: mysqldb
+      PMA_PORT: 3306
+    networks:
+      - app-tier
+
+volumes:
+  mysqldb-data:
+      driver: local  # 로컬 드라이버 사용
+
+networks:
+    app-tier:
+      driver: bridge
