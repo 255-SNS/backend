@@ -1,5 +1,5 @@
 ---
-name: "✉️문서화"
+name: "✉️docs"
 about: 문서화를 진행합니다.
 title: "[Docs]"
 labels: ''
