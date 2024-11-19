@@ -1,4 +1,4 @@
-package com.sns255.sns255.domain.config;
+package com.sns255.sns255.global.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
