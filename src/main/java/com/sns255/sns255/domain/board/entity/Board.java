@@ -1,47 +1,30 @@
-package com.sns255.sns255.domain.user.entity;
+package com.sns255.sns255.domain.board.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 @Entity
 @Getter
-public class User {
+public class Board {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id") // 컬럼 이름이 다르므로 유지
+    @Column(name = "board_id")
     private Long id;
 
     private String name;
-
-    @Column(nullable = false, unique = true)
-    private String studentId;
-
-    private String anonymousName;
-
-    @Column(nullable = false, unique = true)
-    private String email;
-
-    @Column(nullable = false)
-    private String password;
-
-    private String department;
-
-    private String team;
-
-    private int points;
-
-    private int totalPoints;
-
-    private String image;
 
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
 
     private Boolean isDeleted = false;
+
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Post> posts = new ArrayList<>(); // 게시글 리스트
 
     @PrePersist
     public void prePersist() {
@@ -54,6 +37,7 @@ public class User {
         this.updatedAt = LocalDateTime.now();
     }
 
-    protected User() {
+    protected Board() {
+
     }
 }
