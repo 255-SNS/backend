@@ -33,7 +33,6 @@ public class User extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Team team;
 
-
     private int points;
 
     private int totalPoints;

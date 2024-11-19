@@ -30,5 +30,6 @@ public class Post extends BaseEntity {
     private User user;
 
     protected Post() {
+
     }
 }
