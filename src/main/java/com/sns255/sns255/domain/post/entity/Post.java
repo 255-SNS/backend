@@ -6,8 +6,6 @@ import com.sns255.sns255.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
-
 @Entity
 @Getter
 public class Post extends BaseEntity {

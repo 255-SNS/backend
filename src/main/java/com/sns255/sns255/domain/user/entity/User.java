@@ -4,8 +4,6 @@ import com.sns255.sns255.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
-
 @Entity
 @Getter
 public class User extends BaseEntity {
@@ -28,9 +26,13 @@ public class User extends BaseEntity {
     @Column(nullable = false)
     private String password;
 
-    private String department;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Department department;
 
-    private String team;
+    @Enumerated(EnumType.STRING)
+    private Team team;
+
 
     private int points;
 

@@ -1,15 +1,10 @@
 package com.sns255.sns255.domain.essay.entity;
 
 import com.sns255.sns255.domain.board.entity.Board;
-import com.sns255.sns255.domain.post.entity.Post;
 import com.sns255.sns255.domain.user.entity.User;
 import com.sns255.sns255.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
