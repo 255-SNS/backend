@@ -1,5 +1,6 @@
 package com.sns255.sns255.domain.user.entity;
 
+import com.sns255.sns255.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 
@@ -7,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-public class User {
+public class User extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,23 +37,6 @@ public class User {
     private int totalPoints;
 
     private String image;
-
-    private LocalDateTime createdAt;
-
-    private LocalDateTime updatedAt;
-
-    private Boolean isDeleted = false;
-
-    @PrePersist
-    public void prePersist() {
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        this.updatedAt = LocalDateTime.now();
-    }
 
     protected User() {
     }

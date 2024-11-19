@@ -3,6 +3,7 @@ package com.sns255.sns255.domain.essay.entity;
 import com.sns255.sns255.domain.board.entity.Board;
 import com.sns255.sns255.domain.post.entity.Post;
 import com.sns255.sns255.domain.user.entity.User;
+import com.sns255.sns255.global.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 
@@ -12,7 +13,7 @@ import java.util.List;
 
 @Entity
 @Getter
-public class Essay {
+public class Essay extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "essay_id")
@@ -46,24 +47,10 @@ public class Essay {
     private String projects; // 프로젝트(대내외) 경험
 
     @Column(nullable = false)
-    private String fileUrl; //업로드 한 자기소개서 파일 경로
+    private String fileUrl1; //업로드 한 자기소개서 파일 경로
 
-    private LocalDateTime createdAt;
-
-    private LocalDateTime updatedAt;
-
-    private Boolean isDeleted = false;
-
-    @PrePersist
-    public void prePersist() {
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        this.updatedAt = LocalDateTime.now();
-    }
+    @Column(nullable = false)
+    private String fileUrl2;
 
     protected Essay() {
 
