@@ -18,7 +18,7 @@ public class User extends BaseEntity {
     @Column(nullable = false, unique = true, name = "studentId")
     private String studentId;
 
-    @Column(name = "annoymousName")
+    @Column(name = "anonymousName")
     private String anonymousName;
 
     @Column(nullable = false, unique = true)
@@ -36,6 +36,7 @@ public class User extends BaseEntity {
 
     private int points;
 
+    @Column(name = "totalPoints")
     private int totalPoints;
 
     private String image;
