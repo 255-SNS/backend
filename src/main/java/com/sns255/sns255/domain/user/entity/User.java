@@ -44,6 +44,15 @@ public class User extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Verified isVerified = Verified.PENDING;
 
-    protected User() {
+    public User() {
+    }
+
+    public User(String name, int studentId, String email, String password, Department department) {
+        this.name = name;
+        this.studentId = studentId;
+        this.email = email;
+        this.password = password;
+        this.department = department;
+        this.isVerified = Verified.PENDING;
     }
 }
