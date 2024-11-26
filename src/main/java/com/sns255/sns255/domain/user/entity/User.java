@@ -10,14 +10,15 @@ public class User extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id") // 컬럼 이름이 다르므로 유지
+    @Column(name = "userId")
     private Long id;
 
     private String name;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, name = "studentId")
     private String studentId;
 
+    @Column(name = "annoymousName")
     private String anonymousName;
 
     @Column(nullable = false, unique = true)
@@ -38,6 +39,9 @@ public class User extends BaseEntity {
     private int totalPoints;
 
     private String image;
+
+    @Enumerated(EnumType.STRING)
+    private Verified isVerified = Verified.PENDING;
 
     protected User() {
     }
