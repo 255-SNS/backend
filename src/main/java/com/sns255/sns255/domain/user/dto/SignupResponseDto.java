@@ -8,8 +8,8 @@ public record SignupResponseDto (
     String email,
     String department,
     String team
-) { public static SignupRequestDto fromEntity(User user) {
-        return new SignupRequestDto(
+) { public static SignupResponseDto fromEntity(User user) {
+        return new SignupResponseDto (
             user.getName(),
             user.getStudentId(),
             user.getEmail(),
