@@ -16,7 +16,7 @@ public class User extends BaseEntity {
     private String name;
 
     @Column(nullable = false, unique = true, name = "studentId")
-    private String studentId;
+    private int studentId;
 
     @Column(name = "anonymousName")
     private String anonymousName;

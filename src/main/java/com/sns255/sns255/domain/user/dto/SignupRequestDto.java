@@ -2,13 +2,13 @@ package com.sns255.sns255.domain.user.dto;
 
 public class SignupRequestDto {
     private final String name;
-    private final String studentId;
+    private final int studentId;
     private final String anonymousName;
     private final String email;
     private final String password;
     private final String department;
 
-    public SignupRequestDto(String name, String studentId, String anonymousName, String email, String password, String department) {
+    public SignupRequestDto(String name, int studentId, String anonymousName, String email, String password, String department) {
         this.name = name;
         this.studentId = studentId;
         this.anonymousName = anonymousName;
@@ -33,7 +33,7 @@ public class SignupRequestDto {
         return email;
     }
 
-    public String getPassword() {
+    public int getPassword() {
         return password;
     }
 
