@@ -2,6 +2,7 @@ package com.sns255.sns255.domain.user.entity;
 
 import com.sns255.sns255.global.entity.BaseEntity;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 
 @Entity
@@ -47,6 +48,7 @@ public class User extends BaseEntity {
     public User() {
     }
 
+    @Builder
     public User(String name, int studentId, String email, String password, Department department) {
         this.name = name;
         this.studentId = studentId;
