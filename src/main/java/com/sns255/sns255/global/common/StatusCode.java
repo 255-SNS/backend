@@ -28,7 +28,8 @@ public enum StatusCode {
     USER_NOT_FOUND(NOT_FOUND, "존재하는 회원이 없습니다."),
 
     /* 409 CONFLICT : 리소스 충돌 */
-    USER_ALREADY_EXISTS(CONFLICT, "이미 존재하는 회원입니다.");
+    USER_ALREADY_EXISTS(CONFLICT, "이미 존재하는 회원입니다."),
+    STUDENT_ID_ALREADY_EXISTS(CONFLICT, "이미 존재하는 회원입니다.");
 
     private final HttpStatus status;
     private final String message;

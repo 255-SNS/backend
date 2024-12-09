@@ -7,11 +7,12 @@ import com.sns255.sns255.domain.user.entity.Team;
 import com.sns255.sns255.domain.user.entity.User;
 import com.sns255.sns255.domain.user.repository.UserRepository;
 import com.sns255.sns255.domain.user.service.UserService;
+import com.sns255.sns255.global.exception.CustomException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import static com.sns255.sns255.global.common.StatusCode.PASSWORD_NOT_MATCH;
+import static com.sns255.sns255.global.common.StatusCode.*;
 
 @Service
 @RequiredArgsConstructor
@@ -67,7 +68,7 @@ public class UserServiceImpl implements UserService {
 
     private void existsByEmail(String email) {
         if (userRepository.existsByEmail(email)) {
-            throw new CustomException(EMAIL_ALREADY_EXISTS);
+            throw new CustomException(USER_ALREADY_EXISTS);
         }
     }
 
