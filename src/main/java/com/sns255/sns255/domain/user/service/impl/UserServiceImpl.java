@@ -1,45 +1,63 @@
 package com.sns255.sns255.domain.user.service.impl;
 
-import com.sns255.sns255.domain.user.dto.request.SignupRequestDto;
-import com.sns255.sns255.domain.user.dto.response.SignupResponseDto;
+import com.sns255.sns255.domain.user.dto.request.SignUpRequestDto;
+import com.sns255.sns255.domain.user.dto.response.UserResponseDto;
 import com.sns255.sns255.domain.user.entity.Department;
 import com.sns255.sns255.domain.user.entity.Team;
 import com.sns255.sns255.domain.user.entity.User;
 import com.sns255.sns255.domain.user.repository.UserRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import com.sns255.sns255.domain.user.service.UserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserServiceImpl {
+@RequiredArgsConstructor
+public class UserServiceImpl implements UserService {
+
     private final UserRepository userRepository;
-    public UserServiceImpl(final UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-    //회원가입
-    //정보 받기 -> 이메일 중복 확인 -> 학번 중복 확인 -> 팀 배정 -> 저장
-    public SignupResponseDto registerUser(SignupRequestDto request) {
-        if(userRepository.existsByEmail(request.email())) {
-            throw new IllegalArgumentException("Email address already in use");
+    private final PasswordEncoder passwordEncoder;
+
+    @Override
+    public UserResponseDto signUp(SignUpRequestDto signUpRequestDto) {
+        // 이메일 중복 확인
+        existsByEmail(signUpRequestDto.getEmail());
+
+        // 학번 중복 확인
+        existsByStudentId(signUpRequestDto.getStudentId());
+
+        // 비밀번호 일치 여부 확인
+        if (!signUpRequestDto.getPassword().equals(signUpRequestDto.getCheckPassword())) {
+            throw new CustomException(PASSWORD_NOT_MATCH);
         }
 
-        if(userRepository.existsByStudentId(request.studentId())) {
-            throw new IllegalArgumentException("Student id already in use");
-        }
+        // 비밀번호 암호화
+        String enCodePassword = passwordEncoder.encode(signUpReqDto.getPassword());
 
+        // 팀 배정 (균형 유지)
         long blueCount = userRepository.countByTeam(Team.BLUE);
         long greenCount = userRepository.countByTeam(Team.GREEN);
         long redCount = userRepository.countByTeam(Team.RED);
-
         Team assignedTeam = Team.getBalancedTeam(blueCount, greenCount, redCount);
 
-        String encodedPassword = new BCryptPasswordEncoder().encode(request.password());
-
-        Department department = Department.valueOf(request.department());
-        User user = request.toEntity(encodedPassword, department);
+        // User 엔티티 생성 및 저장
+        User user = signUpReqDto.toEntity(enCodePassword, Department.valueOf(signUpReqDto.getDepartment().toUpperCase()));
         user.assignTeam(assignedTeam);
+        user = userRepository.save(user);
 
-        userRepository.save(user);
+        // 응답 DTO 반환
+        return UserResDto.toDto(user);
+    }
 
-        return SignupResponseDto.fromEntity(user);
+    private void existsByEmail(String email) {
+        if (userRepository.existsByEmail(email)) {
+            throw new CustomException(EMAIL_ALREADY_EXISTS);
+        }
+    }
+
+    private void existsByStudentId(Integer studentId) {
+        if (userRepository.existsByStudentId(studentId)) {
+            throw new CustomException(STUDENT_ID_ALREADY_EXISTS);
+        }
     }
 }
