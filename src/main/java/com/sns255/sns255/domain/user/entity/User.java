@@ -8,7 +8,7 @@ import org.hibernate.annotations.Where;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Where(clause = "is_deleted = falsex")
+@Where(clause = "is_deleted = false")
 @Table(name = "users")
 public class User extends BaseEntity {
 
@@ -49,11 +49,8 @@ public class User extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Verified isVerified = Verified.PENDING;
 
-    public User() {
-    }
-
     @Builder
-    public User(String name, Integer studentId, String email, String password, Department department) {
+    public User(String name, Integer studentId, String anonymousName, String email, String password, Department department) {
         this.name = name;
         this.studentId = studentId;
         this.anonymousName = anonymousName;
