@@ -2,7 +2,7 @@ package com.sns255.sns255.domain.user.controller;
 
 import com.sns255.sns255.domain.user.dto.request.SignupRequestDto;
 import com.sns255.sns255.domain.user.dto.response.SignupResponseDto;
-import com.sns255.sns255.domain.user.service.UserService;
+import com.sns255.sns255.domain.user.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
 public class UserController {
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
     @PostMapping("/sign-up")
     public ResponseEntity<SignupResponseDto> signup(@RequestBody SignupRequestDto request) {
