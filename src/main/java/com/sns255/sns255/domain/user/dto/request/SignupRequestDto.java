@@ -6,7 +6,7 @@ import com.sns255.sns255.domain.user.entity.User;
 
 public record SignupRequestDto (
         String name,
-        int studentId,
+        Integer studentId,
         String email,
         String password,
         String department

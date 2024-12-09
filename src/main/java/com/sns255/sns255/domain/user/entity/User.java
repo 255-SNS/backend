@@ -2,11 +2,14 @@ package com.sns255.sns255.domain.user.entity;
 
 import com.sns255.sns255.global.entity.BaseEntity;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
+import org.hibernate.annotations.Where;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Where(clause = "is_deleted = falsex")
+@Table(name = "users")
 public class User extends BaseEntity {
 
     @Id
@@ -17,7 +20,7 @@ public class User extends BaseEntity {
     private String name;
 
     @Column(nullable = false, unique = true, name = "studentId")
-    private int studentId;
+    private Integer studentId;
 
     @Column(name = "anonymousName")
     private String anonymousName;
@@ -26,6 +29,7 @@ public class User extends BaseEntity {
     private String email;
 
     @Column(nullable = false)
+    @ToString.Exclude
     private String password;
 
     @Enumerated(EnumType.STRING)
@@ -35,10 +39,10 @@ public class User extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Team team;
 
-    private int points;
+    private Integer points;
 
     @Column(name = "totalPoints")
-    private int totalPoints;
+    private Integer totalPoints;
 
     private String image;
 
@@ -49,9 +53,10 @@ public class User extends BaseEntity {
     }
 
     @Builder
-    public User(String name, int studentId, String email, String password, Department department) {
+    public User(String name, Integer studentId, String email, String password, Department department) {
         this.name = name;
         this.studentId = studentId;
+        this.anonymousName = anonymousName;
         this.email = email;
         this.password = password;
         this.department = department;
