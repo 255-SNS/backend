@@ -1,7 +1,7 @@
 package com.sns255.sns255.domain.user.service;
 
-import com.sns255.sns255.domain.user.dto.SignupRequestDto;
-import com.sns255.sns255.domain.user.dto.SignupResponseDto;
+import com.sns255.sns255.domain.user.dto.request.SignupRequestDto;
+import com.sns255.sns255.domain.user.dto.response.SignupResponseDto;
 import com.sns255.sns255.domain.user.entity.Department;
 import com.sns255.sns255.domain.user.entity.Team;
 import com.sns255.sns255.domain.user.entity.User;

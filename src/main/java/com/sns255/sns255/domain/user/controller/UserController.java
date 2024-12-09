@@ -1,21 +1,19 @@
 package com.sns255.sns255.domain.user.controller;
 
-import com.sns255.sns255.domain.user.dto.SignupRequestDto;
-import com.sns255.sns255.domain.user.dto.SignupResponseDto;
+import com.sns255.sns255.domain.user.dto.request.SignupRequestDto;
+import com.sns255.sns255.domain.user.dto.response.SignupResponseDto;
 import com.sns255.sns255.domain.user.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/users")
+@RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
-
-    @PostMapping("/api/v1/users/{id}")
+    @PostMapping("/sign-up")
     public ResponseEntity<SignupResponseDto> signup(@RequestBody SignupRequestDto request) {
         try {
             SignupResponseDto response = userService.registerUser(request);

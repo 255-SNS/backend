@@ -1,7 +1,8 @@
-package com.sns255.sns255.domain.user.dto;
+package com.sns255.sns255.domain.user.dto.request;
 
 import com.sns255.sns255.domain.user.entity.Department;
 import com.sns255.sns255.domain.user.entity.User;
+
 
 public record SignupRequestDto (
         String name,

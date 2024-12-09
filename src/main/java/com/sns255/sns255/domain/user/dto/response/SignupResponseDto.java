@@ -1,4 +1,4 @@
-package com.sns255.sns255.domain.user.dto;
+package com.sns255.sns255.domain.user.dto.response;
 
 import com.sns255.sns255.domain.user.entity.User;
 
