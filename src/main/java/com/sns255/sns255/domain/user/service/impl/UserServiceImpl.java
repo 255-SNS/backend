@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import static com.sns255.sns255.global.common.StatusCode.PASSWORD_NOT_MATCH;
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
