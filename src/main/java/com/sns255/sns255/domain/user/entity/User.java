@@ -9,7 +9,6 @@ import org.hibernate.annotations.Where;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Where(clause = "is_deleted = false")
-@Table(name = "users")
 public class User extends BaseEntity {
 
     @Id

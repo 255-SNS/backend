@@ -8,7 +8,7 @@ public record UserResponseDto(
     String email,
     String department,
     String team
-) { public static UserResponseDto fromEntity(User user) {
+) { public static UserResponseDto toDto(User user) {
         return new UserResponseDto(
             user.getName(),
             user.getStudentId(),

@@ -29,27 +29,7 @@ public class UserServiceImpl implements UserService {
         if (!(signUpRequest.password().equals(signUpRequest.checkPassword())))
             throw new CustomException(PASSWORD_NOT_MATCH);
 
-        String enCodePassword = passwordEncoder.encode(signUpReqDto.getPassword());
-
-        User user = userRepository.save(signUpReqDto.toEntity(signUpReqDto.getEmail(), enCodePassword));
-        return UserResDto.toDto(user);
-    }
-
-    @Override
-    public UserResponseDto signUp(SignUpRequestDto signUpRequestDto) {
-        // 이메일 중복 확인
-        existsByEmail(signUpRequestDto.getEmail());
-
-        // 학번 중복 확인
-        existsByStudentId(signUpRequestDto.getStudentId());
-
-        // 비밀번호 일치 여부 확인
-        if (!signUpRequestDto.getPassword().equals(signUpRequestDto.getCheckPassword())) {
-            throw new CustomException(PASSWORD_NOT_MATCH);
-        }
-
-        // 비밀번호 암호화
-        String enCodePassword = passwordEncoder.encode(signUpReqDto.getPassword());
+        String encodedPassword = passwordEncoder.encode(signUpRequest.password());
 
         // 팀 배정 (균형 유지)
         long blueCount = userRepository.countByTeam(Team.BLUE);
@@ -58,13 +38,14 @@ public class UserServiceImpl implements UserService {
         Team assignedTeam = Team.getBalancedTeam(blueCount, greenCount, redCount);
 
         // User 엔티티 생성 및 저장
-        User user = signUpReqDto.toEntity(enCodePassword, Department.valueOf(signUpReqDto.getDepartment().toUpperCase()));
+        User user = signUpRequest.toEntity(encodedPassword, Department.valueOf(signUpRequest.department().toUpperCase()));
         user.assignTeam(assignedTeam);
         user = userRepository.save(user);
 
         // 응답 DTO 반환
-        return UserResDto.toDto(user);
+        return UserResponseDto.toDto(user);
     }
+
 
     private void existsByEmail(String email) {
         if (userRepository.existsByEmail(email)) {
