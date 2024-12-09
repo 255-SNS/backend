@@ -21,6 +21,20 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
+    public UserResponseDto signUp(SignUpRequestDto signUpRequest) {
+        existsByEmail(signUpRequest.email());
+
+        // 비밀번호 일치 여부 확인
+        if (!(signUpRequest.password().equals(signUpRequest.checkPassword())))
+            throw new CustomException(PASSWORD_NOT_MATCH);
+
+        String enCodePassword = passwordEncoder.encode(signUpReqDto.getPassword());
+
+        User user = userRepository.save(signUpReqDto.toEntity(signUpReqDto.getEmail(), enCodePassword));
+        return UserResDto.toDto(user);
+    }
+
+    @Override
     public UserResponseDto signUp(SignUpRequestDto signUpRequestDto) {
         // 이메일 중복 확인
         existsByEmail(signUpRequestDto.getEmail());
