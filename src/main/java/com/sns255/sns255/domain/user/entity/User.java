@@ -1,6 +1,6 @@
 package com.sns255.sns255.domain.user.entity;
 
-import com.sns255.sns255.global.entity.BaseEntity;
+import com.sns255.sns255.global.config.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Where;

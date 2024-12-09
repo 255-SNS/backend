@@ -2,7 +2,7 @@ package com.sns255.sns255.domain.essay.entity;
 
 import com.sns255.sns255.domain.board.entity.Board;
 import com.sns255.sns255.domain.user.entity.User;
-import com.sns255.sns255.global.entity.BaseEntity;
+import com.sns255.sns255.global.config.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 

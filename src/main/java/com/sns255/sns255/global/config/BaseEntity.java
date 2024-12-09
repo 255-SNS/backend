@@ -1,4 +1,4 @@
-package com.sns255.sns255.global.entity;
+package com.sns255.sns255.global.config;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
