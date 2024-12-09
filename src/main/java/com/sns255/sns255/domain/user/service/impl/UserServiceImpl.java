@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
         user = userRepository.save(user);
 
         // 응답 DTO 반환
-        return UserResponseDto.toDto(user);
+        return UserResponseDto.fromEntity(user);
     }
 
 
