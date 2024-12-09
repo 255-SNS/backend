@@ -1,4 +1,4 @@
-package com.sns255.sns255;
+package com.sns255.sns255.global;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
