@@ -18,9 +18,8 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/sign-up")
-    public ResponseEntity<CommonResponse<UserResponseDto>> signUp(@RequestBody @Valid SignUpRequestDto signUpReqDto) {
+    public ResponseEntity<CommonResponse<UserResponseDto>> signUp(@RequestBody @Valid SignUpRequestDto signUpRequest) {
         return ResponseEntity.status(SIGN_UP.getStatus())
-                .body(CommonResponse.from(SIGN_UP.getMessage(),userService.signUp(signUpReqDto)));
+                .body(CommonResponse.from(SIGN_UP.getMessage(),userService.signUp(signUpRequest)));
     }
-
 }

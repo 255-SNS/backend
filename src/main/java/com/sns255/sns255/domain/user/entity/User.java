@@ -19,7 +19,7 @@ public class User extends BaseEntity {
     private String name;
 
     @Column(nullable = false, unique = true, name = "studentId")
-    private Integer studentId;
+    private String studentId;
 
     @Column(name = "anonymousName")
     private String anonymousName;
@@ -49,7 +49,7 @@ public class User extends BaseEntity {
     private Verified isVerified = Verified.PENDING;
 
     @Builder
-    public User(String name, Integer studentId, String anonymousName, String email, String password, Department department) {
+    public User(String name, String studentId, String anonymousName, String email, String password, Department department) {
         this.name = name;
         this.studentId = studentId;
         this.anonymousName = anonymousName;

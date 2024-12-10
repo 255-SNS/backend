@@ -4,7 +4,7 @@ import com.sns255.sns255.domain.user.entity.User;
 
 public record UserResponseDto(
         String name,
-        Integer studentId,
+        String studentId,
         String email,
         String department,
         String team

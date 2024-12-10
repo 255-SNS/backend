@@ -15,7 +15,7 @@ public record SignUpRequestDto(
         @NotBlank(message = "학번은 필수 입력 사항입니다.")
         @Pattern(regexp = "^\\d{9}$", message = "학번은 9자리 숫자여야 합니다.")
         @Schema(description = "회원의 학번", example = "202300001")
-        Integer studentId,
+        String studentId,
 
         @NotBlank(message = "닉네임은 필수 입력 사항입니다.")
         @Schema(description = "회원의 닉네임", example = "uni")
