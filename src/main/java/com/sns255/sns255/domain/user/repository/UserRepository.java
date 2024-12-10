@@ -15,7 +15,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     // 이메일 중복 확인
     boolean existsByEmail(String email);
     // 학번 중복 확인
-    boolean existsByStudentId(int studentId);
+    boolean existsByStudentId(String studentId);
     // 팀별 사용자 수 계산
     @Query("SELECT COUNT(u) FROM User u WHERE u.team = :team")
     long countByTeam(Team team);

@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    private void existsByStudentId(Integer studentId) {
+    private void existsByStudentId(String studentId) {
         if (userRepository.existsByStudentId(studentId)) {
             throw new CustomException(STUDENT_ID_ALREADY_EXISTS);
         }

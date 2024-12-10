@@ -27,12 +27,12 @@ public record SignUpRequestDto(
         String email,
 
         @NotBlank(message = "비밀번호는 필수 입력 사항입니다.")
-        @Schema(description = "회원의 비밀번호", example = "userPassword!")
+        @Schema(description = "회원의 비밀번호", example = "userPassword1!")
         @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$", message = "비밀번호는 8~16자의 영문 대소문자, 숫자, 특수문자로 이루어져야 합니다.")
         String password,
 
         @NotBlank(message = "비밀번호 확인은 필수 입력 사항입니다.")
-        @Schema(description = "회원의 비밀번호 확인", example = "userPassword!")
+        @Schema(description = "회원의 비밀번호 확인", example = "userPassword1!")
         String checkPassword,
 
         @NotBlank(message = "학과는 필수 입력 사항입니다.")
