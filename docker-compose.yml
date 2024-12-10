@@ -25,19 +25,6 @@ services:
     networks:
       - app-tier
 
-  spring:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
-    env_file:
-      - .env
-    depends_on:
-      - mysqldb
-    networks:
-      - app-tier
-
 volumes:
   mysqldb-data:
     driver: local  # 로컬 드라이버 사용
