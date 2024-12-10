@@ -62,4 +62,8 @@ public class User extends BaseEntity {
     public void assignTeam(Team team) {
         this.team = team;
     }
+
+    public void checkVerified(Verified verified) {
+        this.isVerified = verified;
+    }
 }
