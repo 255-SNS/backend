@@ -26,5 +26,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Modifying
     @Query("DELETE FROM User u WHERE u.isVerified = :status AND u.createdAt < :expiryDate")
-    void deleteUnverifiedUsers(Verified status, LocalDateTime expiryDate);
+    int deleteUnverifiedUsers(Verified status, LocalDateTime expiryDate);
 }
