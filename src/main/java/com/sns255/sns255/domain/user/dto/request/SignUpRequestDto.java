@@ -36,7 +36,7 @@ public record SignUpRequestDto(
         String checkPassword,
 
         @NotBlank(message = "학과는 필수 입력 사항입니다.")
-        @Schema(description = "회원의 학과", example = "컴퓨터공학과")
+        @Schema(description = "회원의 학과", example = "COMPUTER_SCIENCE")
         String department
 ) {
     public User toEntity(String encodedPassword, Department department) {
