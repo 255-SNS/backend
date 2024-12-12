@@ -20,8 +20,8 @@ public class EmailVerificationServiceImpl implements EmailVerificationService {
     private final UserRepository userRepository;
     private final EmailService emailService;
 
-    @Override
     @Transactional
+    @Override
     public void sendVerificationEmail(User user) throws MessagingException {
         // 기존 토큰 삭제
         tokenRepository.deleteById(user.getId());
@@ -36,8 +36,8 @@ public class EmailVerificationServiceImpl implements EmailVerificationService {
         emailService.sendEmail(user.getEmail(), "SNS 이메일 인증", emailContent);
     }
 
-    @Override
     @Transactional
+    @Override
     public void verifyToken(String token) {
         EmailVerificationToken verificationToken = tokenRepository.findByToken(token)
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 토큰입니다."));
