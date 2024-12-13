@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
         User user = findByEmail(signInRequest.getEmail());
 
         if (user.getIsVerified() != Verified.VERIFIED)
-            throw new CustomException(VERIFIED_FAILD);
+            throw new CustomException(VERIFIED_FAILED);
 
         if(!passwordEncoder.matches(signInRequest.getPassword(), user.getPassword()))
             throw new CustomException(AUTHENTICATION_FAILED); // 유저는 아이디, 비밀번호 중 한개만 틀려도 '일치하는 정보가 없음' 메세지 표시
