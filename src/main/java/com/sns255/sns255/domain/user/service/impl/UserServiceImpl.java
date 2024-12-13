@@ -6,6 +6,7 @@ import com.sns255.sns255.domain.user.dto.response.UserResponseDto;
 import com.sns255.sns255.domain.user.entity.Department;
 import com.sns255.sns255.domain.user.entity.Team;
 import com.sns255.sns255.domain.user.entity.User;
+import com.sns255.sns255.domain.user.entity.Verified;
 import com.sns255.sns255.domain.user.repository.UserRepository;
 import com.sns255.sns255.domain.user.service.UserService;
 import com.sns255.sns255.global.exception.CustomException;
@@ -49,6 +50,9 @@ public class UserServiceImpl implements UserService {
 
     public UserResponseDto signIn(SignInRequestDto signInRequest) {
         User user = findByEmail(signInRequest.getEmail());
+
+        if (user.getIsVerified() != Verified.VERIFIED)
+            throw new CustomException(VERIFIED_FAILD);
 
         if(!passwordEncoder.matches(signInRequest.getPassword(), user.getPassword()))
             throw new CustomException(AUTHENTICATION_FAILED); // 유저는 아이디, 비밀번호 중 한개만 틀려도 '일치하는 정보가 없음' 메세지 표시
