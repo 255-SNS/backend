@@ -22,6 +22,7 @@ public enum StatusCode {
     AUTHENTICATION_FAILED(UNAUTHORIZED, "회원의 정보가 일치하지 않습니다."),
 
     /* 403 FORBIDDEN : 권한 없음 */
+    VERIFIED_FAILED(UNAUTHORIZED, "이메일 인증이 완료되지 않았습니다."),
 
     /* 404 NOT_FOUND : 존재하지 않는 리소스 */
     INPUT_VALUE_INVALID(NOT_FOUND, "유효하지 않은 입력입니다."),
