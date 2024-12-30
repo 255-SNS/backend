@@ -39,3 +39,4 @@ out/
 
 .env
 application-private.properties
+client_secret.json
