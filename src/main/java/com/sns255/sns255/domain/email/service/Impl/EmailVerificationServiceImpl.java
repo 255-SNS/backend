@@ -1,4 +1,4 @@
-package com.sns255.sns255.domain.email.service.impl;
+package com.sns255.sns255.domain.email.service.Impl;
 
 import com.sns255.sns255.domain.email.entity.EmailVerificationToken;
 import com.sns255.sns255.domain.email.repository.EmailVerificationTokenRepository;
