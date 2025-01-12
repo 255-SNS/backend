@@ -1,5 +1,7 @@
 package com.sns255.sns255.domain.report.service;
 
+import com.sns255.sns255.domain.report.dto.req.ReportRequestDto;
+import com.sns255.sns255.domain.report.dto.res.ReportResponseDto;
 import com.sns255.sns255.domain.report.entity.Report;
 import com.sns255.sns255.domain.report.entity.ReportStatus;
 import com.sns255.sns255.domain.report.repository.ReportRepository;
@@ -19,20 +21,25 @@ public class ReportService {
     private final UserRepository userRepository;
 
     @Transactional
-    public void createReport(Long reporterId, Long reportedUserId, String reason, String description) {
-        User reporter = userRepository.findById(reporterId)
+    public ReportResponseDto createReport(ReportRequestDto requestDto) {
+        User reporter = userRepository.findById(requestDto.getReporterId())
                 .orElseThrow(() -> new IllegalArgumentException("신고자를 찾을 수 없습니다."));
-        User reportedUser = userRepository.findById(reportedUserId)
+        User reportedUser = userRepository.findById(requestDto.getReportedUserId())
                 .orElseThrow(() -> new IllegalArgumentException("신고 대상을 찾을 수 없습니다."));
 
-        Report report = new Report(reporter, reportedUser, reason, description);
-        reportRepository.save(report);
+        Report report = new Report(reporter, reportedUser, requestDto.getReason(), requestDto.getDescription());
+        Report savedReport = reportRepository.save(report);
+
+        return ReportResponseDto.fromEntity(savedReport);
     }
 
-    public List<Report> getReportsByStatus(ReportStatus status) {
-        return reportRepository.findByStatus(status);
+    public List<ReportResponseDto> getReportsByStatus(ReportStatus status) {
+        return reportRepository.findByStatus(status)
+                .stream()
+                .map(ReportResponseDto::fromEntity)
+                .toList();
     }
-
+    
     @Transactional
     public void updateReportStatus(Long reportId, ReportStatus status) {
         Report report = reportRepository.findById(reportId)
