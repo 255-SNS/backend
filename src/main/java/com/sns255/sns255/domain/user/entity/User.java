@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Where;
 
+import java.time.LocalDate;
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -38,15 +40,17 @@ public class User extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Team team;
 
-    private Integer points;
+    private Integer points = 0; // 초기 포인트는 0
 
     @Column(name = "totalPoints")
-    private Integer totalPoints;
+    private Integer totalPoints = 0; // 초기 누적 포인트는 0
 
     private String image;
 
     @Enumerated(EnumType.STRING)
     private Verified isVerified = Verified.PENDING;
+
+    private LocalDate lastAttendanceDate; // 마지막 출석 날짜
 
     @Builder
     public User(String name, String studentId, String anonymousName, String email, String password, Department department) {
@@ -65,5 +69,11 @@ public class User extends BaseEntity {
 
     public void checkVerified(Verified verified) {
         this.isVerified = verified;
+    }
+
+    public void attend(int pointsToAdd) {
+        this.points += pointsToAdd;
+        this.totalPoints += pointsToAdd;
+        this.lastAttendanceDate = LocalDate.now();
     }
 }
