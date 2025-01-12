@@ -40,10 +40,10 @@ public class User extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Team team;
 
-    private Integer points = 0; // 초기 포인트는 0
+    private Integer points = 0;
 
     @Column(name = "totalPoints")
-    private Integer totalPoints = 0; // 초기 누적 포인트는 0
+    private Integer totalPoints = 0;
 
     private String image;
 
