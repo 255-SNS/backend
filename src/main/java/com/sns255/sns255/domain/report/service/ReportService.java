@@ -39,7 +39,7 @@ public class ReportService {
                 .map(ReportResponseDto::fromEntity)
                 .toList();
     }
-    
+
     @Transactional
     public void updateReportStatus(Long reportId, ReportStatus status) {
         Report report = reportRepository.findById(reportId)
