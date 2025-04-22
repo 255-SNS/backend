@@ -50,7 +50,7 @@ public class User extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Verified isVerified = Verified.PENDING;
 
-    private LocalDate lastAttendanceDate; // 마지막 출석 날짜
+    private LocalDate lastAttendanceDate; // 마지막 출석
 
     @Builder
     public User(String name, String studentId, String anonymousName, String email, String password, Department department) {
